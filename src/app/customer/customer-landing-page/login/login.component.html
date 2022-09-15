@@ -1,0 +1,128 @@
+<div style="margin-top:50px"></div>
+<!-- <div class="row">
+    <div class="col-md-4 offset-md-4">
+        <div class="form-bg-light">
+
+            <h3 class="title">Customer Login</h3>
+            <form class="form" [formGroup]="loginForm" (ngSubmit)="login()">
+
+                <div class="form-group">
+                    <label for="emailId">Email Id</label>
+                    <input class="form-control" formControlName="emailId" placeholder="Email Id" id="emailId" />
+                    <div *ngIf="loginForm.controls.emailId.invalid && loginForm.controls.emailId.touched">
+
+                        <div class="field-error-message" *ngIf="loginForm.controls.emailId.hasError('required')">
+                            Email Id is Mandatory
+                        </div>
+                        <div class="field-error-message"
+                            *ngIf="loginForm.controls.emailId.dirty && loginForm.controls.emailId.hasError('emailIdPatternError')">
+                            Email Id pattern is invalid
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="Password">Password</label>
+                    <input type="password" class="form-control" formControlName="password" placeholder="Password"
+                        id="password" />
+                    <div *ngIf="loginForm.controls.password.invalid && loginForm.controls.password.touched">
+
+                        <div class="field-error-message" *ngIf="loginForm.controls.password.hasError('required')">
+                            Password is Mandatory
+                        </div>
+                        <div class="field-error-message"
+                            *ngIf="loginForm.controls.password.dirty && loginForm.controls.password.hasError('passwordPatternError')">
+                            Password pattern is invalid
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="row">
+
+                    <button class="col-md-4 offset-md-1 btn btn-success" [disabled]="!loginForm.valid">
+                        Login
+                    </button>
+
+                    <button class="col-md-4 offset-md-2 btn btn-primary" type="reset" (click)="errorMessage=null"
+                        [disabled]="loginForm.pristine">
+                        Reset
+                    </button>
+
+                </div>
+            </form>
+            <h5 *ngIf="tryToLogin" class="text-center text-info"> Logging...Please Wait!!</h5>
+            <h5 class="error-message text-justify">{{errorMessage}}</h5>
+            <br />
+            <div class="text-info">Are you a new user? <a routerLink="../register">Sign up</a></div>
+        </div>
+    </div>
+</div>
+
+ -->
+
+
+
+<div class="row justify-content-center">
+    <div class="col-md-7 col-lg-5">
+    <div class="wrap">
+    <div class="img" style="background-image:url(../../../../assets/images/login-image.webp)"></div>
+    <div class="login-wrap p-4 p-md-5">
+    <div class="d-flex">
+    <div class="w-100">
+    <h3 class="mb-4">Sign In</h3>
+    </div>
+
+    </div>
+    <form [formGroup]="loginForm" (ngSubmit)="login()" class="signin-form form">
+    <div class="form-group mt-3">
+    <input type="text" class="form-control" formControlName="emailId" id="emailId" required>
+    <label class="form-control-placeholder" for="emailId">Email ID</label>
+    <div *ngIf="loginForm.controls.emailId.invalid && loginForm.controls.emailId.touched">
+
+        <div class="field-error-message" *ngIf="loginForm.controls.emailId.hasError('required')">
+            Email Id is Mandatory
+        </div>
+        <div class="field-error-message"
+            *ngIf="loginForm.controls.emailId.dirty && loginForm.controls.emailId.hasError('emailIdPatternError')">
+            Email Id pattern is invalid
+        </div>
+    </div>    
+</div>
+    <div class="form-group">
+    <input id="password" type="password" class="form-control" formControlName="password" required>
+    
+    <label class="form-control-placeholder" for="password">Password</label>
+    <div *ngIf="loginForm.controls.password.invalid && loginForm.controls.password.touched">
+
+        <div class="field-error-message" *ngIf="loginForm.controls.password.hasError('required')">
+            Password is Mandatory
+        </div>
+        <div class="field-error-message"
+            *ngIf="loginForm.controls.password.dirty && loginForm.controls.password.hasError('passwordPatternError')">
+            Password pattern is invalid
+        </div>
+    </div>
+    </div>
+    <div class="form-group">
+    <button type="submit" class="form-control btn btn-primary rounded submit px-3" [disabled]="!loginForm.valid">Sign In</button>
+    </div>
+
+
+
+    <div class="form-group">
+        <button type="reset" (click)="errorMessage=null"
+        [disabled]="loginForm.pristine" class="form-control btn btn-danger rounded submit px-3">Reset</button>
+        </div>
+
+
+
+   
+    </form>
+    <p class="text-center">Not a member? <a routerLink="../register">Sign Up</a></p>
+    <h5 *ngIf="tryToLogin" class="text-center text-info"> Logging...Please Wait!!</h5>
+            <h5 class="error-message text-justify">{{errorMessage}}</h5>
+    </div>
+    </div>
+    </div>
+    </div>

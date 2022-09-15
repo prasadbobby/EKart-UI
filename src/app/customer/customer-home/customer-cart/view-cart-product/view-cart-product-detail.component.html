@@ -1,0 +1,136 @@
+<style>
+    @import url("https://fonts.googleapis.com/css2?family=Asap&family=Roboto:ital,wght@0,500;0,900;1,500&display=swap");
+
+    .card:hover {
+        /* transform: scale(1.1); */
+        /* box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.4); */
+        z-index: 3;
+    } 
+
+    p {
+        font-size: 30px;
+        font-weight: 600;
+        color: transparent;
+        background-clip: text;
+        -webkit-background-clip: text;
+        text-align: center;
+
+
+    }
+
+    /* .col-auto:hover img { */
+        /* transform: scale(1.2); */
+        /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); */
+    /* } */
+
+    .update:hover button {
+        transform: scale(1.01);
+        transition: 0.5s;
+        z-index: 3;
+      
+
+        /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); */
+    }
+</style>
+
+<div class="row">
+
+    <div class="card" style="margin-top:50px;   border-radius: 17px;
+    background: #ffffff;
+    box-shadow:  22px 22px 65px #f0f0f0,
+                -22px -22px 65px #ffffff; border: none;">
+        <div class="col-auto">
+
+
+
+            <img [src]="'assets/resources/'+ selectedCartProduct.product.productId+'.jpg'"
+                class="img-responsive center-block" alt="Image Not Found" onError="this.src='assets/resources/404.png'"
+                style="margin-left: 300px; margin-top: 30px;border-radius: 10px;border-color: black;">
+
+
+        </div>
+        <div>
+            <br />
+            <br />
+            <p>
+                {{selectedCartProduct.product.brand+" "+selectedCartProduct.product.name}}
+            </p>
+
+        </div>
+        <br />
+        <br />
+        <table>
+            <tr>
+                <th style="padding-right:20px;" class="text-center">Features</th>
+                <th style="padding-right:20px" class="text-center">Price</th>
+                <th style="padding-right:20px" class="text-center">Discount</th>
+                <th style="padding-right:10px" class="text-center">Quantity</th>
+            </tr>
+            <br />
+            <tr>
+                <td style="padding-right:30px">
+                    <dl class="text-center">
+                        <div *ngFor="let item of selectedCartProduct.product.description|productDescription">
+                            <dd>{{item}}</dd>
+                        </div>
+                    </dl>
+
+                </td>
+                <td style="padding-right:30px">
+                    <span class="success-message">
+
+                        <strong>Rs.{{selectedCartProduct.product.price *
+                            (1-selectedCartProduct.product.discount/100)|number:'1.2-2'}}</strong>
+
+                        <div class="clearfix"></div>
+                        <span class="field-error-message">
+                            <del>Rs.{{selectedCartProduct.product.price |number:'1.2-2'}}</del>
+                        </span>
+                    </span>
+                </td>
+                <td style="padding-right:30px">
+                    <strong>
+                        <span class="success-message">{{selectedCartProduct.product.discount/100 | percent}}</span>
+                    </strong>
+                </td>
+                <td>
+                    <strong>
+
+                        <button [disabled]="selectedCartProduct.quantity<=0" (click)="alter('-')" style="border: none;"
+                            class="btn">
+                            <img src="https://cdn-icons-png.flaticon.com/512/992/992683.png"
+                                style="width:26px;height: 26px; cursor:pointer;"></button>
+                        <input [(ngModel)]="selectedCartProduct.quantity" style="width:70px; text-align: center; height: 10px;" />
+
+                        <button (click)="alter('+')" style="border: none;" class="btn"> <img
+                                src="https://cdn-icons-png.flaticon.com/128/3303/3303893.png"
+                                style="width:26px;height: 26px; cursor: pointer;"></button>
+                    </strong>
+
+                </td>
+            </tr>
+        </table>
+        <br />
+        <br />
+        <div class="update">
+            <button style="border-radius: 3px; margin-left: 680px;  padding: 2px 6px 6px 10px;" (click)="updateCart()">Update</button>
+        </div>
+        <br />
+        <br />
+        <div class="" style="margin-left: 50px;">
+        <span style="font-size: 20px; margin-left: 360px;"><b>Total Payable Amount </b> </span>
+        <strong>
+            <span class="success-message"
+                style="font-size: 25px;text-align: right;">Rs.{{selectedCartProduct.product.price
+                *selectedCartProduct.quantity*
+                (1-selectedCartProduct.product.discount/100)|number:'1.2-2'}}</span>
+        </strong>
+    </div>
+        <br />
+        <br />
+
+
+    </div>
+</div>
+<h5 class="success-message">{{successMessage}}</h5>
+<h5 class="error-message">{{errorMessage}}</h5>

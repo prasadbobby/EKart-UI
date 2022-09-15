@@ -1,0 +1,228 @@
+<style>
+  .dropdown-menu{
+  top: 60px;
+  right: 0px;
+  left: unset;
+  width: 320px;
+  box-shadow: 0px 5px 7px -1px #c1c1c1;
+  padding-bottom: 0px;
+  padding: 0px;
+}
+.header_chart .widgets-wrap .widget-text .tester {
+  display: block;
+}
+.nav{
+  display: block;
+}
+.dropdown-menu:before{
+  content: "";
+  position: absolute;
+  top: -20px;
+  right: 12px;
+  border:10px solid #343A40;
+  border-color: transparent transparent #343A40 transparent;
+}
+.head{
+  padding:5px 15px;
+  border-radius: 3px 3px 0px 0px;
+}
+.footer{
+  padding:5px 15px;
+  border-radius: 0px 0px 3px 3px; 
+}
+.notification-box{
+  padding: 10px 0px; 
+}
+.bg-gray{
+  background-color: #eee;
+}
+@media (max-width: 640px) {
+    .dropdown-menu{
+      top: 50px;
+      left: -16px;  
+      width: 290px;
+    } 
+    .nav{
+      display: block;
+    }
+    .nav .nav-item,.nav .nav-item a{
+      padding-left: 0px;
+    }
+    .message{
+      font-size: 13px;
+    }
+}
+</style>
+<style>
+  .dropbtn {
+/* background-color: #04AA6D; */
+color: #15417e;
+padding: 16px;
+font-weight: 600;
+font-size: 16px;
+border: none;
+}
+
+.dropdown {
+position: relative;
+display: inline-block;
+}
+
+.dropdown-content {
+display: none;
+position: absolute;
+background-color: #f1f1f1;
+min-width: 160px;
+box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+z-index: 1;
+opacity: 0;
+}
+
+.dropdown-content a {
+color: black;
+padding: 12px 16px;
+text-decoration: none;
+display: none;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block; opacity: 1; z-index: 9999;}
+
+/* .dropdown:hover .dropbtn {background-color: #3e8e41;} */
+</style>
+
+
+<div class="header_top_area navbar-dark navbar-expand-md navbar-nav">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xl-2 col-lg-4 col-md-4 col-sm-12">
+          <div class="header_logo">
+            <a class="navbar-brand" href="/home"><img src="../../../assets/images/ekart.jpg" alt="sobarbazar"></a>
+          </div>
+        </div>
+          <div class="col-xl-10 col-lg-12 col-sm-12">
+            <div class="header_chart">
+              <div class="widgets-wrap">
+                <div class="widget-text">
+                  <ul>
+                    <li>
+                <a routerLink="products" routerLinkActive="active" class="nav-link">Products</a>
+                    </li>
+                    <li>
+                <a routerLink="todayDeals" routerLinkActive="active" class="nav-link">Today's Deal</a>
+                    </li>
+                    <li>
+                        <a routerLink="details" routerLinkActive="active" class="nav-link"><i class="fa fa-user"></i></a>
+
+                    </li>
+                    <li>
+              <a routerLink="cart" routerLinkActive="active" class="nav-link"><i class="fa fa-shopping-cart"></i>
+                <span class="cart badge badge-pill badge-info">{{cart.length}}</span>
+
+              </a> </li> 
+
+              <!-- <li>
+                <a routerLink="cart" routerLinkActive="active" class="nav-link"><i class="fa fa-bell"></i>
+                  <span class="cart badge badge-pill badge-info">{{cart.length}}</span>
+  
+                </a> </li>  -->
+
+
+
+
+                <!-- <li class="nav-item dropdown"  routerLinkActive="active">
+
+                  <div class="dropdown">
+                            <button class="dropbtn">Deal of the Day<i class="fa fa-caret-down"></i>
+                            </button>
+                            <div class="dropdown-content">
+                                <a routerLink="todaysDeal"  routerLinkActive="active">View Today's
+                                  Deal</a>
+                                <a routerLink="addDeal"  routerLinkActive="active" >Add Product to Today's deal</a>
+                    
+                            </div>
+                          </div>
+                </li> -->
+
+
+
+
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropbtn"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-top: -19px;">
+                    <i class="fa fa-bell"></i>
+                  </a>
+                    <ul class="dropdown-menu dropdown-content">
+                      <li class="notification-box">
+                        <div class="row">
+                          <div class="col-lg-3 col-sm-3 col-3 text-center">
+                            <img src="https://www.nicesnippets.com/demo/man-profile.jpg" class="w-50 rounded-circle">
+                          </div>    
+                          <div class="col-lg-8 col-sm-8 col-8">
+                            <strong class="text-info">David John</strong>
+                            <div>
+                              Lorem ipsum dolor sit amet, consectetur
+                            </div>
+                            <small class="text-warning">27.11.2015, 15:00</small>
+                          </div>    
+                        </div>
+                      </li>
+                      <hr>
+                      <li class="notification-box">
+                        <div class="row">
+                          <div class="col-lg-3 col-sm-3 col-3 text-center">
+                            <img src="https://www.nicesnippets.com/demo/man-profile.jpg" class="w-50 rounded-circle">
+                          </div>    
+                          <div class="col-lg-8 col-sm-8 col-8">
+                            <strong class="text-info">David John</strong>
+                            <div>
+                              Lorem ipsum dolor sit amet, consectetur
+                            </div>
+                            <small class="text-warning">27.11.2015, 15:00</small>
+                          </div>    
+                        </div>
+                      </li>
+
+                      <hr>
+                      <li class="notification-box">
+                        <div class="row">
+                          <div class="col-lg-3 col-sm-3 col-3 text-center">
+                            <img src="https://www.nicesnippets.com/demo/man-profile.jpg" class="w-50 rounded-circle">
+                          </div>    
+                          <div class="col-lg-8 col-sm-8 col-8">
+                            <strong class="text-info">David John</strong>
+                            <div>
+                              Lorem ipsum dolor sit amet, consectetur
+                            </div>
+                            <small class="text-warning">27.11.2015, 15:00</small>
+                          </div>    
+                        </div>
+                      </li>
+                      
+                     </ul>
+                </li>
+
+
+
+
+               <li>
+                <a class="nav-link" routerLinkActive="active" (click)="logout()" style="cursor: pointer;"><i class="fa fa-sign-out"></i></a>
+                    </li>                        
+                  </ul>
+                </div>
+               
+              </div>
+              
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+                <router-outlet></router-outlet>
+        </div>
+    </div>

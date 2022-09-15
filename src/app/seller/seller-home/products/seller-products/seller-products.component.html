@@ -1,0 +1,296 @@
+<style>
+    @charset "UTF-8";
+    @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+
+    h3 {
+        font-size: 50px;
+        font-weight: 600;
+        background-image: repeating-radial-gradient(closest-side at 20px 20px, #553c9a, #ee4b2b, #553c9a);
+        color: transparent;
+        background-clip: text;
+        -webkit-background-clip: text;
+        text-align: center;
+    }
+
+
+    body {
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 300;
+        line-height: 1.42em;
+        color: #A7A1AE;
+        background-color: #1F2739;
+    }
+
+    h1 {
+        font-size: 3em;
+        font-weight: 300;
+        line-height: 1em;
+        text-align: center;
+        color: #4DC3FA;
+    }
+
+    h2 {
+        font-size: 1em;
+        font-weight: 300;
+        text-align: center;
+        display: block;
+        line-height: 1em;
+        padding-bottom: 2em;
+        color: #FB667A;
+    }
+
+    h2 a {
+        font-weight: 700;
+        text-transform: uppercase;
+        color: #FB667A;
+        text-decoration: none;
+    }
+
+    .blue {
+        color: #185875;
+    }
+
+    .yellow {
+        color: #FFF842;
+    }
+
+    .container th h1 {
+        font-weight: bold;
+        font-size: 1em;
+        text-align: center;
+        color: #185875;
+    }
+
+    .container td {
+        font-weight: normal;
+        font-size: 1em;
+        -webkit-box-shadow: 0 2px 2px -2px #0E1119;
+        -moz-box-shadow: 0 2px 2px -2px #0E1119;
+        box-shadow: 0 2px 2px -2px #0E1119;
+    }
+
+    .container {
+        text-align: center;
+        overflow: hidden;
+        width: 80%;
+        margin-left: -30px;
+        display: table;
+        padding: 0 0 8em 0;
+    }
+
+    .container td,
+    .container th {
+        padding-bottom: 2%;
+        padding-top: 2%;
+        padding-left: 20px;
+        padding-right: 50px;
+
+
+    }
+
+    /* Background-color of the odd rows */
+    .container tr:nth-child(odd) {
+        background-color: #E1f8DC;
+    }
+
+    /* Background-color of the even rows */
+    .container tr:nth-child(even) {
+        background-color: #CAF1DE;
+    }
+
+    .container th {
+        background-color: #ACDDDE;
+    }
+
+    .container td:first-child {
+        color: #FB667A;
+    }
+
+    .container tr:hover {
+        background-color: #F9EBDF;
+        -webkit-box-shadow: 0 6px 6px -6px #0E1119;
+        -moz-box-shadow: 0 6px 6px -6px #0E1119;
+        box-shadow: 0 6px 6px -6px #0E1119;
+    }
+
+    .container td:hover {
+        background-color: #C0C6ED;
+        color: #403E10;
+        font-weight: bold;
+
+        box-shadow: #7F7C21 -1px 1px, #7F7C21 -2px 2px, #7F7C21 -3px 3px, #7F7C21 -4px 4px, #7F7C21 -5px 5px, #7F7C21 -6px 6px;
+        transform: translate3d(6px, -6px, 0);
+
+        transition-delay: 0s;
+        transition-duration: 0.4s;
+        transition-property: all;
+        transition-timing-function: line;
+    }
+
+    @media (max-width: 800px) {
+
+        .container td:nth-child(4),
+        .container th:nth-child(4) {
+            display: none;
+        }
+    }
+</style>
+
+
+<div>
+    <div *ngIf="displayProducts && productList.length !=0">
+        <h3>My Products</h3>
+        <br />
+        <br />
+        <table class="container">
+            <thead>
+
+                <tr>
+                    <th style="text-align: center">
+                        <h1>Product Id</h1>
+                    </th>
+                    <th style="text-align: center">
+                        <h1>Product Name</h1>
+                    </th>
+                    <th style="text-align: center">
+                        <h1>Category</h1>
+                    </th>
+                    <th style="text-align: center">
+                        <h1>Brand</h1>
+                    </th>
+                    <th style="text-align: center">
+                        <h1>Modify</h1>
+                    </th>
+                    <th style="text-align: center">
+                        <h1>Remove</h1>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let product of productList">
+                    <td>{{product.productId}}</td>
+                    <td>{{product.name}}</td>
+                    <td>{{product.category}}</td>
+                    <td>{{product.brand}}</td>
+                    <td>
+                        <button (click)='viewProductDetails(product)' style="border-radius: 5px;">Modify</button>
+
+                    </td>
+                    <td>
+                        <button (click)='removeProduct(product)' style="border-radius: 5px;">Remove</button>
+                    </td>
+
+
+                </tr>
+            </tbody>
+        </table>
+        <br />
+        <br />
+        <div *ngIf="(errorMessage!='' || successMessage!='')">
+            <div class="error-message text-center font-weight-bold">{{errorMessage}}</div>
+            <div class="success-message text-center font-weight-bold">{{successMessage}}</div>
+        </div>
+    </div>
+
+    <div *ngIf="!(displayProducts)">
+        <div>
+            <h3>Product Details</h3>
+            <br />
+            <br />
+            <form (ngSubmit)="modifyProductDetails()" #modifyForm="ngForm">
+                <table class="container" style="margin-left:70px">
+                    <tr>
+                        <th>Product ID:</th>
+                        <td>
+                            <input readonly type="number" class="form-control"
+                                [(ngModel)]="productToBeModified.productId" name="productID" #productId="ngModel" />
+                            <div class="field-error-message" *ngIf="productId.invalid">Please provide proper value</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Product Name:</th>
+                        <td>
+                            <input type="text" required class="form-control" [(ngModel)]="productToBeModified.name"
+                                name="productName" #name="ngModel" />
+                            <div class=" field-error-message" *ngIf="name.invalid">Name is mandatory
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Product Description:</th>
+                        <td>
+                            <textarea required cols="40" rows="3" class="form-control"
+                                [(ngModel)]="productToBeModified.description" name="description"
+                                #description="ngModel"></textarea>
+                            <div class="field-error-message" *ngIf="description.invalid">Description is mandatory</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Product Category:</th>
+                        <td>
+                            <select required class="form-control" [(ngModel)]="productToBeModified.category"
+                                name="category" #category="ngModel">
+                                <option *ngFor="let category of productCategoryList" value="{{category}}">{{category}}
+                                </option>
+                            </select>
+                            <div class="field-error-message" *ngIf="category.invalid">Category is mandatory</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Product Brand:</th>
+                        <td>
+                            <input type="text" required class="form-control" [(ngModel)]="productToBeModified.brand"
+                                name="productBrand" #productBrand="ngModel" />
+                            <div class="field-error-message" *ngIf="productBrand.invalid">Product Brand is mandatory
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Product Price:</th>
+                        <td>
+                            <input type="number" required class="form-control" min="0"
+                                [(ngModel)]="productToBeModified.price" name="productPrice" #productPrice="ngModel" />
+                            <div class="field-error-message" *ngIf="productPrice.invalid">Product Price is mandatory
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Product Quantity:</th>
+                        <td>
+                            <input type="number" required class="form-control" min="1"
+                                [(ngModel)]="productToBeModified.quantity" name="productQuantity"
+                                #productQuantity="ngModel" />
+                            <div class="field-error-message" *ngIf="productQuantity.invalid">Product Quantity is
+                                mandatory</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Product Discount:</th>
+                        <td>
+                            <input type="number" required class="form-control" min="0"
+                                [(ngModel)]="productToBeModified.discount" name="productDiscount"
+                                #productDiscount="ngModel" />
+                            <div class="field-error-message" *ngIf="productDiscount.invalid">Product Discount is
+                                mandatory</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><button type="submit" (click)="flag='1'" [disabled]="modifyForm.invalid"
+                                style="border-radius:10px">Update
+                                Details</button></th>
+                        <td><button type="button" (click)="displayProducts='True'"
+                                style="border-radius:10px">Cancel</button></td>
+                    </tr>
+                </table>
+
+
+            </form>
+            <br />
+            <br />
+
+        </div>
+    </div>
+    <div class="text-center" *ngIf="displayProducts && productList.length ==0">
+        <h5 class="error-message">No products available</h5>
+    </div>
+</div>
